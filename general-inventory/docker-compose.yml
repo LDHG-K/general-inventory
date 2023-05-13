@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  database:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: inventory_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  inventory:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+
+    depends_on:
+      - database
+    ports:
+      - "8080:8080"
+
+volumes:
+  pgdata:
