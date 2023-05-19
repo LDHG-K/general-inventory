@@ -13,7 +13,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
-      - inventory
+      - inventory-net
 
   inventory:
     build:
@@ -26,10 +26,10 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - inventory
+      - inventory-net
 
 volumes:
   pgdata:
 
 networks:
-    inventory:
+    inventory-net:
