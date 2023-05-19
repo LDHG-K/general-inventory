@@ -27,9 +27,13 @@ services:
       - "8080:8080"
     networks:
       - inventory
+      - services
+
 volumes:
   pgdata:
 
 networks:
     inventory:
+      driver: bridge
+    services:
       driver: bridge
